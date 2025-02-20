@@ -5,9 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
 
     // *******************  XLSX File Paths (Update these!) *******************
-    const studentXLSX = 'data/students.xlsx';  //  Create this directory and file
-    const teacherXLSX = 'data/teachers.xlsx';    //  Create this directory and file
-    const utilitiesXLSX = 'data/utilities.xlsx'; //  Create this directory and file
+    const studentXLSX = 'js/data/students.xlsx';  //  Create this directory and file
+    const teacherXLSX = 'js/data/teachers.xlsx';    //  Create this directory and file
+    const utilitiesXLSX = 'js/data/utilities.xlsx'; //  Create this directory and file
 
     // ******************* Global Variables *******************
     let studentData = [];
@@ -111,6 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Authentication
         if (authenticate(selectedCategory, loginId, password)) {
+            // Store loginId in localStorage
+            if(selectedCategory == "student"){
+                localStorage.setItem('loginId', loginId);
+            }
             // Successful login, redirect
             redirectToPage(selectedCategory);
         } else {
